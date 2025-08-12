@@ -5,9 +5,13 @@
 
 @theme {
   --color-primary: #978877;
+  --color-secondary: #38C240;
+
   --color-light: #f5f5f5;
-  --color-dark: #092635;
-  --color-primary-200: #978877 --color-primary-800: #524541
+  --color-dark: #191A19;
+  --color-primary-200: #978877;
+  --color-primary-800: #524541;
+  
 }
 
 
@@ -30,6 +34,8 @@
 
   }
 }
+
+
 
 
 
