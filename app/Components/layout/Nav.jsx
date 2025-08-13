@@ -14,9 +14,8 @@ export const Nav = () => {
     ];
 
     return (
-        <div className="flex items-center justify-between w-full px-4 sm:px-10 md:px-20 h-20">
+        <div className="flex fixed top-0 z-50 items-center justify-between w-full px-4 sm:px-10 md:px-20 h-20   dark:bg-dark   bg-gradient-to-r from-[#FFF7E7] dark:from-dark dark:to-dark/20 to-[#FFF7E7] overflow-hidden dark:bg-dark shadow-md">
 
-            {/* Left: Navigation Items */}
             <div className="flex gap-4 md:gap-8">
                 {navItems.map((nav, index) => (
                     <Link href={nav.link} key={index} className="text-sm md:text-base hover:text-secondary-light text-primary-light dark:text-primary-dark  transition-colors">
