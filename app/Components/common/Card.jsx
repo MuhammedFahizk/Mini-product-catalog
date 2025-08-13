@@ -1,38 +1,58 @@
 "use client";
 import React from 'react';
-import { Div } from '.'; // Adjust path if needed
+import { Div } from '.';
 import Image from 'next/image';
 import { BsCartPlus } from "react-icons/bs";
 import { GoHeart } from "react-icons/go";
 import Link from 'next/link';
+import { FaStar } from 'react-icons/fa';
 
 export const Card = ({ product }) => {
   return (
-    <Div className="flex flex-col px-4   justify-between bg-gradient-to-t h-60 md:h-full from-primary/40 dark:from-primary-200 via-primary/20 to-primary/10  dark:to-primary-800/50 dark:bg-primary/20 rounded-2xl ">
-      <Image
-        src={product?.image || '/fallback-image.jpg'}
-        alt={product?.title || 'Product Image'}
-        width={400}
-        height={400} // Increased height for better visibility
-        className="object-contain h-40  md:h-70 w-full p-5" // Tailwind h-72 = 18rem
-        priority={false}
-      />
-      <Div className="    p-2 py-4 flex flex-col  md:flex-row  ">
-        <h2 className="text-md font-semibold truncate overflow-hidden text-ellipsis w-34 md:w-fit  text-white ">{product?.title || 'No Title'}</h2>
+    <Link href={`/product/${product.id}`}>
+      <Div className="relative flex flex-col justify-between bg-gradient-to-bl from-secondary-light/20 dark:from-dark-bg dark:to-dark-bg/20 to-secondary-light/5 rounded-2xl h-full hover:shadow-lg transition-shadow duration-300">
         
+        {/* Action Icons */}
+        <Div className="absolute top-2 right-2 flex gap-2 z-10">
+          <button className="bg-primary-light dark:bg-primary-dark shadow-lg p-2 rounded-lg text-white">
+            <BsCartPlus size={20} />
+          </button>
+          <button className="bg-primary-light dark:bg-primary-dark shadow-lg p-2 rounded-lg text-white">
+            <GoHeart size={20} />
+          </button>
+        </Div>
+
+        {/* Product Image */}
+        <div className="w-full h-48 sm:h-56 flex justify-center items-center px-4 pt-4">
+          <Image
+            src={product?.image || '/fallback-image.jpg'}
+            alt={product?.title || 'Product Image'}
+            width={400}
+            height={400}
+            className="object-contain max-h-full"
+          />
+        </div>
+
+        {/* Info Section */}
+        <div className="flex flex-col gap-2 px-4 pb-4">
+          <h2 className="text-sm sm:text-base font-semibold text-primary-200 truncate">
+            {product?.title || 'No Title'}
+          </h2>
+
+          <div className="flex flex-col-reverse sm:flex-row sm:justify-between items-center gap-2 text-sm">
+            {/* Rating */}
+            <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-secondary-light dark:bg-secondary-dark text-gray-900 text-xs sm:text-sm">
+              <FaStar size={14} className="text-yellow-300" />
+              <span>{product.rating.rate} / {product.rating.count}</span>
+            </div>
+
+            {/* Price */}
+            <div className="bg-light/20 text-primary-200 font-semibold px-3 py-1 rounded-full w-fit text-xs sm:text-sm">
+              ${product?.price || 'No Price'}
+            </div>
+          </div>
+        </div>
       </Div>
-      <div className='flex justify-around w-full  py-3 h-fit items-center'>
-        <Link 
-       href={`/product/${product.id}`}
-        className='bg-green-200 px-3 p-1 rounded-full'>
-          Shwo Details {product.id}
-        </Link>
-        <h2 className="text-md font-semibold  cursor-pointer bg-light/20 px-3 p-1 rounded-full  w-fit    text-end text-white "> ${product?.price || 'No Title'}</h2>
-      </div>
-      <Div className={'absolute end-5 top-4 flex gap-4 py-5 flex-col  bg-white dark:bg-dark shadow-2xl  rounded-full cursor-pointer p-2 '}>
-       <BsCartPlus/>
-       <GoHeart/>
-      </Div>
-    </Div>
+    </Link>
   );
 };

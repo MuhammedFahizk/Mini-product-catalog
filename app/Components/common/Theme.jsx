@@ -50,9 +50,9 @@ export const Theme = () => {
                     className="fixed bottom-6 right-6 p-3 rounded-full transition bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-primary-200 shadow-lg hover:bg-gray-300 dark:hover:bg-gray-900"
                 >
                     {darkMode ? (
-                        <IoSunnyOutline className="text-primary-200 text-xl" />
+                        <IoSunnyOutline className="text-primary-dark  text-xl" />
                     ) : (
-                        <IoMoonOutline className="text-primary-200 text-xl" />
+                        <IoMoonOutline className="text-primary-light text-xl" />
                     )}
                 </button>
             )}

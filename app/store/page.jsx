@@ -1,50 +1,17 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import { Div, Card } from '../Components/common'; // Assuming Div is a styled component
-import { fetchProducts } from '../utils/api';
+import React, { Suspense } from 'react';
+import Store from '../Components/Store';
+import { CardSkelten } from '../Components/sklten/CardSkelten';
 
-const Home = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const loadProducts = async () => {
-      try {
-        const data = await fetchProducts();
-        console.log('Fetched products:', data);
-        setProducts(data);
-        setLoading(false); 
-      } catch (error) {
-        setError('Failed to load products. Please try again.');
-        setLoading(false);
-        console.error('Error:', error.message);
-      }
-    };
-    loadProducts();
-  }, []); 
-
-  if (loading) return <Div>Loading...</Div>;
-  if (error) return <Div>{error}</Div>;
-
+export default function StorePage() {
   return (
-    <Div className={ ' px-2 '}>
-      
-      {products.length === 0 ? (
-        <p>No products available.</p>
-      ) : (
-          <div className='  grid grid-cols-2 md:grid-cols-4  gap-2'>
-            {products.map(product => (
-            <Div key={product.id}>
-              <Card  product={product}/>
-            </Div>
-          ))}
-          </div>
-      )}
-
-
-    </Div>
+    <Suspense fallback={
+      <div className="px-2 py-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        {Array.from({ length: 8 }).map((_, idx) => (
+          <CardSkelten key={idx} />
+        ))}
+      </div>
+    }>
+      <Store />
+    </Suspense>
   );
-};
-
-export default Home;
+}

@@ -1,53 +1,46 @@
-"use client"; // Add this if using Next.js with client-side features
+"use client";
 import React from 'react';
-import { Div } from '../common/index.js';
+import Link from 'next/link'; // Better for Next.js routing
+import { Div, SearchBar } from '../common/index.js';
 import { TfiSearch } from "react-icons/tfi";
-import { PiShoppingCartSimpleThin } from "react-icons/pi";
-import { PiHandbagSimpleLight } from "react-icons/pi";
+import { PiShoppingCartSimpleThin, PiHandbagSimpleLight } from "react-icons/pi";
+import { BsHeart } from 'react-icons/bs';
 
 export const Nav = () => {
-    const navItem = [
-        {
-            item: "Home",
-            link: "/home",
-        },
-        {
-            item: "Store",
-            link: "/store",
-        },
-        {
-            item: "About",
-            link: "/about",
-        },
+    const navItems = [
+        { item: "Home", link: "/home" },
+        { item: "Store", link: "/store" },
+        { item: "About", link: "/about" },
     ];
 
     return (
-        <div className='grid grid-cols-3 items-center px-5 md:px-20 h-20'>
-            <Div className="flex justify-start w-full gap-2 md:gap-5">
-                {navItem.map((item, index) => (
-                    <Div key={index} className="text-sm   hover:text-primary-800 md:text-base">
-                        <a href={item.link}>{item.item}</a>
-                    </Div>
+        <div className="flex items-center justify-between w-full px-4 sm:px-10 md:px-20 h-20">
+
+            {/* Left: Navigation Items */}
+            <div className="flex gap-4 md:gap-8">
+                {navItems.map((nav, index) => (
+                    <Link href={nav.link} key={index} className="text-sm md:text-base hover:text-secondary-light text-primary-light dark:text-primary-dark  transition-colors">
+                        {nav.item}
+                    </Link>
                 ))}
-            </Div>
-            <Div className="text-center flex justify-center items-center gap-1 text-sm md:text-base lg:text-lg">
-                <PiHandbagSimpleLight className='text-md lg-text-lg text-primary' />
-                <h2>
-                    GLAMORA
-                </h2>
-            </Div>
-            <Div className="flex justify-end    w-full gap-2 md:gap-5 text-sm font-light text-primary  ">
-                <div className='flex border gap-3 rounded-full cursor-pointer  md:px-5 p-1.5 items-center h-fit'>
-                    <TfiSearch className="text-xl lg:text-2xl" />
-                    <h3 className='text-primary-200 hidden md:block'>SEARCH</h3>
-                </div>
-                <div className='flex border gap-3  cursor-pointer rounded-full md:px-5 p-1.5 items-center h-fit'>
+            </div>
 
-                    <PiShoppingCartSimpleThin className="text-xl lg:text-2xl" />
-                    <h3 className='text-primary-200 hidden md:block'>MY CART</h3>
+            {/* Center: Logo */}
+            <div className="flex items-center gap-2 text-sm md:text-lg font-medium text-primary text-center">
+                <PiHandbagSimpleLight className="text-xl md:text-2xl dark:text-primary-dark text-primary-light" />
+                <h2 className="tracking-wide text-secondary-light dark:text-secondary-dark font-bold md:text-3xl">GLAMORA</h2>
+            </div>
 
+            <div className="flex items-center gap-2 md:gap-4">
+
+
+                <div className="border rounded-full p-1 md:p-2 hover:bg-secondary-light  cursor-pointer dark:bg-primary-dark  bg-primary-light transition">
+                    <PiShoppingCartSimpleThin className="text-md text-text-light md:text-2xl " />
                 </div>
-            </Div>
+                <div className="border rounded-full p-1 md:p-2  hover:bg-secondary-light dark:bg-primary-dark  bg-primary-light cursor-pointer transition">
+                    <BsHeart className="text-md md:text-2xl text-text-light " />
+                </div>
+            </div>
         </div>
     );
 };

@@ -19,7 +19,7 @@ export const Div = ({ style, children, className, id, onClick }) => {
         {
           y: 0,
           opacity: 1, 
-          duration: 2, 
+          duration: 1.2, 
           ease: "back.in",
           scrollTrigger: {
             trigger: divRef.current,
