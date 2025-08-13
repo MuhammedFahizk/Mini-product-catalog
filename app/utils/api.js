@@ -1,16 +1,18 @@
 
 
 
-  let url = 'https://fakestoreapi.com/products';
 
 
 
-export const fetchProducts = async (productId = null) => {
+export const fetchProducts = async ({ productId = null } = {}) => {
+
+ const baseUrl = 'https://fakestoreapi.com/products';
+  let url = baseUrl;
 
   if (productId) {
-    url += `/${productId}`; 
+    url = `${baseUrl}/${productId}`;
   }
-
+  
   try {
     const response = await fetch(url);
     if (!response.ok) {

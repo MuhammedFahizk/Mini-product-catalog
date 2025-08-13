@@ -12,6 +12,7 @@ const Home = () => {
     const loadProducts = async () => {
       try {
         const data = await fetchProducts();
+        console.log('Fetched products:', data);
         setProducts(data);
         setLoading(false); 
       } catch (error) {

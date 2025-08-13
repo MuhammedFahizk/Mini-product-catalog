@@ -4,6 +4,7 @@ import { Div } from '.'; // Adjust path if needed
 import Image from 'next/image';
 import { BsCartPlus } from "react-icons/bs";
 import { GoHeart } from "react-icons/go";
+import Link from 'next/link';
 
 export const Card = ({ product }) => {
   return (
@@ -18,9 +19,16 @@ export const Card = ({ product }) => {
       />
       <Div className="    p-2 py-4 flex flex-col  md:flex-row  ">
         <h2 className="text-md font-semibold truncate overflow-hidden text-ellipsis w-34 md:w-fit  text-white ">{product?.title || 'No Title'}</h2>
-        <h2 className="text-md font-semibold  cursor-pointer bg-light/20 px-2 rounded-full  w-fit ms-auto   text-end text-white "> ${product?.price || 'No Title'}</h2>
-
+        
       </Div>
+      <div className='flex justify-around w-full  py-3 h-fit items-center'>
+        <Link 
+       href={`/product/${product.id}`}
+        className='bg-green-200 px-3 p-1 rounded-full'>
+          Shwo Details {product.id}
+        </Link>
+        <h2 className="text-md font-semibold  cursor-pointer bg-light/20 px-3 p-1 rounded-full  w-fit    text-end text-white "> ${product?.price || 'No Title'}</h2>
+      </div>
       <Div className={'absolute end-5 top-4 flex gap-4 py-5 flex-col  bg-white dark:bg-dark shadow-2xl  rounded-full cursor-pointer p-2 '}>
        <BsCartPlus/>
        <GoHeart/>
